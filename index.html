@@ -140,6 +140,24 @@
         </div>
     </header>
 
+        <!-- Team/About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="profile">
+                <img src="profile.png" alt="Will Humphreys" class="profile-img">
+                <div class="bio">
+                    <h2>Will Humphreys</h2>
+                    <p class="title">Director of Legal & Operations</p>
+                    <p>JD from Drake University Law School. Developing practical business tools for iOS with focus on compliance, insurance, and professional reference applications.</p>
+                    <p class="credentials">
+                        <strong>Education:</strong> JD - Drake University | BBA - University of Central Arkansas<br>
+                        <strong>Focus:</strong> Business Law, Regulatory Compliance, Mobile Development
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="products">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 40px;">Our Applications</h2>
@@ -216,7 +234,6 @@
             <div style="margin-top: 15px;">
                 <button class="email-button" onclick="copyEmail()" id="emailButton">
                     <span id="emailText">support@orefish.com</span>
-                    <span id="copyIcon">📋</span>
                 </button>
             </div>
             
@@ -272,7 +289,6 @@
                 setTimeout(() => {
                     button.classList.remove('copied');
                     text.textContent = email;
-                    icon.textContent = '';
                 }, 2000);
             }).catch(() => {
                 // Fallback - open email client
