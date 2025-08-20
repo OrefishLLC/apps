@@ -5,12 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orefish LLC - Mobile Software Development</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Carousel Styles */
+        .app-showcase {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .app-icon-section {
+            flex-shrink: 0;
+        }
+        
+        .app-icon-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 26px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .app-details {
+            flex: 1;
+        }
+        
+        .screenshot-carousel {
+            position: relative;
+            width: 300px;
+            height: 650px;
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+        
+        .screenshot-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        
+        .screenshot {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .app-showcase {
+                flex-direction: column;
+            }
+            
+            .screenshot-carousel {
+                width: 200px;
+                height: 433px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>Orefish LLC</h1>
-            <p class="tagline">Mobile Software Solutions</p>
+            <p class="tagline">Professional iOS Applications</p>
         </div>
     </header>
 
@@ -21,8 +106,11 @@
                 <div class="bio">
                     <h2>Will Humphreys</h2>
                     <p class="title">Director of Legal & Operations</p>
-                    <p>JD/MBA - Developing practical business tools for iOS. Focused on compliance, insurance, and professional reference applications.</p>
-                    <p class="credentials">Drake University Law School | University of Central Arkansas</p>
+                    <p>JD from Drake University Law School. Developing practical business tools for iOS with focus on compliance, insurance, and professional reference applications.</p>
+                    <p class="credentials">
+                        <strong>Education:</strong> JD - Drake University | BBA - University of Central Arkansas<br>
+                        <strong>Focus:</strong> Business Law, Regulatory Compliance, Mobile Development
+                    </p>
                 </div>
             </div>
         </div>
@@ -30,15 +118,45 @@
 
     <section class="products">
         <div class="container">
-            <h2>Our Products</h2>
-            <div class="app-grid">
-                <div class="app-card">
-                    <img src="compliancekit-icon.png" alt="ComplianceKit" class="app-icon">
-                    <h3>ComplianceKit</h3>
-                    <p>Insurance & regulatory reference for professionals</p>
-                    <a href="https://apps.apple.com/app/idXXXXXXXXX" class="app-link">View on App Store</a>
+            <h2>Current Products</h2>
+            
+            <!-- ComplianceKit Showcase -->
+            <div class="app-showcase">
+                <div class="app-icon-section">
+                    <img src="compliancekit-icon.png" alt="ComplianceKit" class="app-icon-large">
                 </div>
-                <!-- Add more apps here -->
+                
+                <div class="app-details">
+                    <h3>ComplianceKit</h3>
+                    <p class="app-tagline">Insurance & Regulatory Reference</p>
+                    <p>Professional reference tool for insurance requirements, bond thresholds, and workers compensation rates across all 50 states. Designed for insurance professionals, contractors, and compliance officers.</p>
+                    <ul style="margin: 15px 0; padding-left: 20px; color: #666;">
+                        <li>50-state requirements database</li>
+                        <li>Federal compliance reference</li>
+                        <li>Premium calculators</li>
+                        <li>Offline access</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/idXXXXXXXXX" class="app-link" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: #007AFF; color: white; text-decoration: none; border-radius: 8px;">View on App Store</a>
+                </div>
+                
+                <div class="screenshot-carousel" id="carousel">
+                    <div class="screenshot-container" id="screenshotContainer">
+                        <img src="screenshot1.png" alt="Screenshot 1" class="screenshot">
+                        <img src="screenshot2.png" alt="Screenshot 2" class="screenshot">
+                        <img src="screenshot3.png" alt="Screenshot 3" class="screenshot">
+                    </div>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Future Apps Section -->
+            <div style="margin-top: 60px;">
+                <h3 style="text-align: center; color: #667eea; margin-bottom: 30px;">More Apps Coming Soon</h3>
+                <p style="text-align: center; color: #666;">Currently developing additional professional tools for iOS. Check back for updates.</p>
             </div>
         </div>
     </section>
@@ -46,8 +164,18 @@
     <section class="company">
         <div class="container">
             <h2>About Orefish LLC</h2>
-            <p>Founded in 2020, Orefish LLC develops mobile applications for iOS. We focus on creating practical tools that solve real business problems.</p>
-            <p class="legal-entity">Orefish LLC is a Florida limited liability company.</p>
+            <p>Founded in 2020, Orefish LLC is a Florida limited liability company focused on developing practical mobile applications for iOS. We create professional tools that solve real business problems, with particular emphasis on compliance, regulatory reference, and business productivity.</p>
+            
+            <div style="margin-top: 30px; padding: 20px; background: white; border-radius: 10px;">
+                <h3 style="color: #2c3e50; margin-bottom: 15px;">Development Philosophy</h3>
+                <p>We believe in creating applications that are:</p>
+                <ul style="margin: 15px 0; padding-left: 30px; color: #666;">
+                    <li><strong>Privacy-First:</strong> No data collection or tracking</li>
+                    <li><strong>Offline-Capable:</strong> Full functionality without internet</li>
+                    <li><strong>Professional:</strong> Designed for business use</li>
+                    <li><strong>Reliable:</strong> Thoroughly tested and maintained</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -59,8 +187,40 @@
                 <a href="support.html">Support</a>
             </div>
             <p class="copyright">© 2025 Orefish LLC. All rights reserved.</p>
-            <p class="contact">Contact: support@orefish.com</p>
+            <p class="contact">Support: support@orefish.com</p>
+            <p style="font-size: 0.8em; opacity: 0.6; margin-top: 10px;">
+                Orefish LLC is a Florida limited liability company
+            </p>
         </div>
     </footer>
+
+    <script>
+        // Carousel functionality
+        let slideIndex = 1;
+        const container = document.getElementById('screenshotContainer');
+        const dots = document.getElementsByClassName('dot');
+        
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+        
+        function showSlide(n) {
+            if (n > 3) slideIndex = 1;
+            if (n < 1) slideIndex = 3;
+            
+            container.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
+            
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            dots[slideIndex - 1].classList.add('active');
+        }
+        
+        // Auto-advance slides
+        setInterval(() => {
+            slideIndex++;
+            showSlide(slideIndex);
+        }, 4000); // Change slide every 4 seconds
+    </script>
 </body>
 </html>
