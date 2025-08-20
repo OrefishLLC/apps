@@ -6,35 +6,15 @@
     <title>Orefish LLC - Mobile Software Development</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Dynamic App Grid Styles */
-        .apps-container {
-            display: grid;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        /* Single app = full width */
-        .apps-container:has(.app-showcase:only-child) {
-            grid-template-columns: 1fr;
-        }
-        
-        /* 2+ apps = 2 column grid */
-        .apps-container:has(.app-showcase:nth-child(2)) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        
-        /* Odd numbered app in multi-app grid spans full width */
-        .apps-container:has(.app-showcase:nth-child(2)) .app-showcase:nth-child(odd):last-child {
-            grid-column: 1 / -1;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Compact App Card for Grid */
+        /* App Showcase Styles */
         .app-showcase {
+            display: flex;
+            gap: 30px;
+            align-items: center;
             background: #f8f9fa;
-            padding: 25px;
+            padding: 30px;
             border-radius: 15px;
+            margin-bottom: 30px;
             transition: transform 0.3s;
         }
         
@@ -43,35 +23,36 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
-        .app-showcase.full-width {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            padding: 30px;
-        }
-        
-        .app-showcase.grid-item {
-            text-align: center;
+        .app-icon-section {
+            flex-shrink: 0;
         }
         
         .app-icon-large {
-            width: 100px;
-            height: 100px;
-            border-radius: 22px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            width: 120px;
+            height: 120px;
+            border-radius: 26px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .app-details {
+            flex: 1;
+        }
+        
+        .app-tagline {
+            color: #667eea;
+            font-weight: 600;
             margin-bottom: 15px;
         }
         
         /* Smaller Screenshot Carousel */
         .screenshot-carousel {
             position: relative;
-            width: 200px;  /* Reduced from 300px */
-            height: 430px; /* Reduced from 650px - iPhone aspect ratio */
+            width: 200px;  /* Smaller width */
+            height: 430px; /* Smaller height - iPhone aspect ratio */
             overflow: hidden;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             flex-shrink: 0;
-            margin: 20px auto;
         }
         
         .screenshot-container {
@@ -88,74 +69,27 @@
         
         .carousel-dots {
             position: absolute;
-            bottom: 15px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 6px;
+            gap: 8px;
             z-index: 10;
         }
         
         .dot {
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: rgba(255,255,255,0.5);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: background 0.3s;
         }
         
         .dot.active {
             background: white;
-            width: 20px;
-            border-radius: 3px;
-        }
-        
-        /* Team Section Styles */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .team-member {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-        
-        .team-member img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid #667eea;
-        }
-        
-        .team-member h3 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        .team-member .role {
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .team-member .bio {
-            color: #666;
-            font-size: 0.9em;
-            line-height: 1.5;
+            width: 24px;
+            border-radius: 4px;
         }
         
         /* Email Copy Button */
@@ -172,6 +106,8 @@
             transition: all 0.3s;
             cursor: pointer;
             margin-top: 10px;
+            border: none;
+            font-size: 14px;
         }
         
         .email-button:hover {
@@ -185,12 +121,8 @@
         }
         
         @media (max-width: 768px) {
-            .apps-container:has(.app-showcase:nth-child(2)) {
-                grid-template-columns: 1fr;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
+            .app-showcase {
+                flex-direction: column;
             }
             
             .screenshot-carousel {
@@ -208,82 +140,43 @@
         </div>
     </header>
 
-    <!-- Team Section (if you only want yourself, keep as is. If you want multiple people, uncomment the team-grid version below) -->
-    <section class="about">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 30px;">Our Team</h2>
-            
-            <!-- Single person version (current) -->
-            <div class="profile">
-                <img src="profile.png" alt="Will Humphreys" class="profile-img">
-                <div class="bio">
-                    <h2>Will Humphreys</h2>
-                    <p class="title">Director of Legal & Operations</p>
-                    <p>JD from Drake University Law School. Developing practical business tools for iOS with focus on compliance, insurance, and professional reference applications.</p>
-                    <p class="credentials">
-                        <strong>Education:</strong> JD - Drake University | BBA - University of Central Arkansas<br>
-                        <strong>Focus:</strong> Business Law, Regulatory Compliance, Mobile Development
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="products">
         <div class="container">
-            <h2>Our Applications</h2>
+            <h2 style="text-align: center; margin-bottom: 40px;">Our Applications</h2>
             
-            <!-- Dynamic grid container -->
-            <div class="apps-container">
-                <!-- ComplianceKit -->
-                <div class="app-showcase">
+            <!-- ComplianceKit -->
+            <div class="app-showcase">
+                <div class="app-icon-section">
                     <img src="compliancekit-icon.png" alt="ComplianceKit" class="app-icon-large">
-                    <h3>ComplianceKit</h3>
-                    <p style="color: #667eea; font-weight: 600; margin-bottom: 10px;">Insurance & Regulatory Reference</p>
-                    <p style="color: #666; font-size: 0.95em; margin-bottom: 15px;">Professional reference tool for insurance requirements across all 50 states.</p>
-                    
-                    <div class="screenshot-carousel" id="carousel1">
-                        <div class="screenshot-container" id="screenshotContainer1">
-                            <img src="screenshot1.png" alt="Screenshot 1" class="screenshot">
-                            <img src="screenshot2.png" alt="Screenshot 2" class="screenshot">
-                            <img src="screenshot3.png" alt="Screenshot 3" class="screenshot">
-                        </div>
-                        <div class="carousel-dots">
-                            <span class="dot active" onclick="currentSlide(1, 'carousel1')"></span>
-                            <span class="dot" onclick="currentSlide(2, 'carousel1')"></span>
-                            <span class="dot" onclick="currentSlide(3, 'carousel1')"></span>
-                        </div>
-                    </div>
-                    
-                    <a href="https://apps.apple.com/app/idXXXXXXXXX" style="display: inline-block; padding: 10px 20px; background: #007AFF; color: white; text-decoration: none; border-radius: 8px;">View on App Store</a>
                 </div>
                 
-                <!-- Second App (uncomment when finished) -->
-                <!--
-                <div class="app-showcase">
-                    <img src="app2-icon.png" alt="App Name" class="app-icon-large">
-                    <h3>App Name</h3>
-                    <p style="color: #667eea; font-weight: 600; margin-bottom: 10px;">App Tagline</p>
-                    <p style="color: #666; font-size: 0.95em; margin-bottom: 15px;">Brief description of what the app does.</p>
-                    
-                    <div class="screenshot-carousel" id="carousel2">
-                        <div class="screenshot-container" id="screenshotContainer2">
-                            <img src="app2-screen1.png" alt="Screenshot 1" class="screenshot">
-                            <img src="app2-screen2.png" alt="Screenshot 2" class="screenshot">
-                            <img src="app2-screen3.png" alt="Screenshot 3" class="screenshot">
-                        </div>
-                        <div class="carousel-dots">
-                            <span class="dot active" onclick="currentSlide(1, 'carousel2')"></span>
-                            <span class="dot" onclick="currentSlide(2, 'carousel2')"></span>
-                            <span class="dot" onclick="currentSlide(3, 'carousel2')"></span>
-                        </div>
-                    </div>
-                    
-                    <a href="https://apps.apple.com/app/idXXXXXXXXX" style="display: inline-block; padding: 10px 20px; background: #007AFF; color: white; text-decoration: none; border-radius: 8px;">View on App Store</a>
+                <div class="app-details">
+                    <h3>ComplianceKit</h3>
+                    <p class="app-tagline">Insurance & Regulatory Reference</p>
+                    <p>Professional reference tool for insurance requirements, bond thresholds, and workers compensation rates across all 50 states. Designed for insurance professionals, contractors, and compliance officers.</p>
+                    <ul style="margin: 15px 0; padding-left: 20px; color: #666;">
+                        <li>50-state requirements database</li>
+                        <li>Federal compliance reference</li>
+                        <li>Premium calculators</li>
+                        <li>Offline access</li>
+                    </ul>
+                    <a href="https://apps.apple.com/app/idXXXXXXXXX" class="app-link" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: #007AFF; color: white; text-decoration: none; border-radius: 8px;">View on App Store</a>
                 </div>
-                -->
+                
+                <div class="screenshot-carousel" id="carousel">
+                    <div class="screenshot-container" id="screenshotContainer">
+                        <img src="screenshot1.png" alt="Screenshot 1" class="screenshot">
+                        <img src="screenshot2.png" alt="Screenshot 2" class="screenshot">
+                        <img src="screenshot3.png" alt="Screenshot 3" class="screenshot">
+                    </div>
+                    <div class="carousel-dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                </div>
             </div>
-            
+                        
             <!-- Coming Soon Section -->
             <div style="margin-top: 60px; padding: 30px; background: linear-gradient(135deg, #667eea15, #764ba215); border-radius: 15px;">
                 <h3 style="text-align: center; color: #667eea; margin-bottom: 15px;">More Apps Coming Soon</h3>
@@ -334,53 +227,32 @@
     </footer>
 
     <script>
-        // Carousel functionality with multiple carousel support
-        const carousels = {};
+        // Carousel functionality
+        let slideIndex = 1;
+        const container = document.getElementById('screenshotContainer');
+        const dots = document.getElementsByClassName('dot');
         
-        function initCarousel(carouselId) {
-            carousels[carouselId] = {
-                slideIndex: 1,
-                container: document.querySelector(`#${carouselId} .screenshot-container`),
-                dots: document.querySelectorAll(`#${carouselId} .dot`)
-            };
-            
-            // Auto-advance slides
-            setInterval(() => {
-                if (carousels[carouselId]) {
-                    carousels[carouselId].slideIndex++;
-                    showSlide(carousels[carouselId].slideIndex, carouselId);
-                }
-            }, 4000);
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
         }
         
-        function currentSlide(n, carouselId) {
-            carousels[carouselId].slideIndex = n;
-            showSlide(n, carouselId);
+        function showSlide(n) {
+            if (n > 3) slideIndex = 1;
+            if (n < 1) slideIndex = 3;
+            
+            container.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
+            
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            dots[slideIndex - 1].classList.add('active');
         }
         
-        function showSlide(n, carouselId) {
-            const carousel = carousels[carouselId];
-            if (!carousel) return;
-            
-            if (n > 3) carousel.slideIndex = 1;
-            if (n < 1) carousel.slideIndex = 3;
-            
-            carousel.container.style.transform = `translateX(-${(carousel.slideIndex - 1) * 100}%)`;
-            
-            carousel.dots.forEach((dot, index) => {
-                dot.classList.remove('active');
-                if (index === carousel.slideIndex - 1) {
-                    dot.classList.add('active');
-                }
-            });
-        }
-        
-        // Initialize all carousels
-        document.addEventListener('DOMContentLoaded', () => {
-            initCarousel('carousel1');
-            // Uncomment when you add second app:
-            // initCarousel('carousel2');
-        });
+        // Auto-advance slides
+        setInterval(() => {
+            slideIndex++;
+            showSlide(slideIndex);
+        }, 4000); // Change slide every 4 seconds
         
         // Email copy functionality
         function copyEmail() {
@@ -400,7 +272,7 @@
                 setTimeout(() => {
                     button.classList.remove('copied');
                     text.textContent = email;
-                    icon.textContent = '📋';
+                    icon.textContent = '';
                 }, 2000);
             }).catch(() => {
                 // Fallback - open email client
