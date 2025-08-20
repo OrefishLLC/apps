@@ -186,11 +186,14 @@
                         <img src="screenshot1.png" alt="Screenshot 1" class="screenshot">
                         <img src="screenshot2.png" alt="Screenshot 2" class="screenshot">
                         <img src="screenshot3.png" alt="Screenshot 3" class="screenshot">
+                        <img src="screenshot4.png" alt="Screenshot 4" class="screenshot">
+
                     </div>
                     <div class="carousel-dots">
                         <span class="dot active" onclick="currentSlide(1)"></span>
                         <span class="dot" onclick="currentSlide(2)"></span>
                         <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
                     </div>
                 </div>
             </div>
@@ -254,8 +257,8 @@
         }
         
         function showSlide(n) {
-            if (n > 3) slideIndex = 1;
-            if (n < 1) slideIndex = 3;
+            if (n > 4) slideIndex = 1;
+            if (n < 1) slideIndex = 4;
             
             container.style.transform = `translateX(-${(slideIndex - 1) * 100}%)`;
             
