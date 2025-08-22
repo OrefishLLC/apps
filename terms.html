@@ -4,46 +4,323 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - Orefish LLC</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Terms of Service for Orefish LLC iOS applications.">
+    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #764ba2;
+            --text-dark: #1a202c;
+            --text-light: #4a5568;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --warning: #ffc107;
+            --warning-bg: #fff3cd;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .site-title {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .page-title {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.95em;
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            opacity: 0.7;
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-light);
+        }
+
+        /* Content */
         .legal-content {
             background: white;
             padding: 60px 0;
-            min-height: 100vh;
+            min-height: 60vh;
         }
+
         .legal-content h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .legal-content h2 {
-            color: #667eea;
-            margin-top: 30px;
+            color: var(--text-dark);
             margin-bottom: 15px;
+            font-size: 2.5em;
         }
+
+        .legal-content h2 {
+            color: var(--primary);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .legal-content p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .last-updated {
+            display: inline-block;
+            color: var(--text-light);
+            font-size: 0.9em;
+            padding: 8px 16px;
+            background: var(--bg-light);
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Warning Box */
         .warning-box {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            padding: 20px;
-            border-radius: 5px;
+            background: var(--warning-bg);
+            border: 2px solid var(--warning);
+            padding: 25px;
+            border-radius: 12px;
             margin: 30px 0;
+            position: relative;
+        }
+
+        .warning-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            font-size: 24px;
+        }
+
+        .warning-box strong {
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 8px;
+            padding-left: 35px;
+        }
+
+        .warning-box p {
+            padding-left: 35px;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 60px 0 40px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .email-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            font-size: 15px;
+            font-family: inherit;
+        }
+
+        .email-button:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .email-button.copied {
+            background: #48bb78;
+            border-color: #48bb78;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            opacity: 0.6;
+            font-size: 0.9em;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .legal-content h1 {
+                font-size: 2em;
+            }
+
+            .warning-box {
+                padding: 20px;
+            }
+
+            .warning-box::before {
+                position: static;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .warning-box strong,
+            .warning-box p {
+                padding-left: 0;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
-            <h1>Orefish LLC</h1>
-            <p class="tagline">Terms of Service</p>
+            <div class="header-content">
+                <a href="/" class="logo-link">
+                    <div class="logo">
+                        <img src="orefishlogo_white_conformed.png" alt="Orefish LLC">
+                    </div>
+                    <div class="site-title">Orefish LLC</div>
+                </a>
+                <p class="page-title">Terms of Service</p>
+            </div>
         </div>
     </header>
 
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="/">Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>Terms of Service</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Content -->
     <div class="legal-content">
         <div class="container">
             <h1>Terms of Service</h1>
             <p class="last-updated">Last Updated: September 2025</p>
 
             <div class="warning-box">
-                <strong>IMPORTANT:</strong> These applications provide reference information only. They are NOT legal advice, insurance advice, or professional recommendations. Always consult qualified professionals for your specific situation.
+                <strong>IMPORTANT</strong>
+                <p>These applications provide reference information only. They are NOT legal advice, insurance advice, or professional recommendations. Always consult qualified professionals for your specific situation.</p>
             </div>
 
             <h2>1. Acceptance of Terms</h2>
@@ -60,7 +337,6 @@
 
             <h2>5. Limitation of Liability</h2>
             <p>IN NO EVENT SHALL OREFISH LLC, ITS MEMBERS, MANAGERS, EMPLOYEES, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE APPLICATION.</p>
-
             <p>OUR MAXIMUM LIABILITY TO YOU FOR ANY CLAIMS ARISING FROM THE APPLICATION SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE APPLICATION.</p>
 
             <h2>6. Entity Protection</h2>
@@ -85,21 +361,61 @@
             <p>These Terms constitute the entire agreement between you and Orefish LLC regarding use of our applications.</p>
 
             <h2>13. Contact Information</h2>
-            <p>For questions about these Terms, contact us at:<br>
-            Email: support@orefish.com<br>
-            Entity: Orefish LLC, a Florida limited liability company</p>
+            <p>For questions about these Terms, contact us at:</p>
+            <p>
+                Email: support@orefish.com<br>
+                Entity: Orefish LLC, a Florida limited liability company
+            </p>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="support.html">Support</a>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/support">Support</a>
+                </div>
+                
+                <button class="email-button" onclick="copyEmail()" id="emailButton">
+                    <span id="emailText">support@orefish.com</span>
+                    <svg id="copyIcon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                </button>
+                
+                <p class="copyright">
+                    © 2025 Orefish LLC. All rights reserved.<br>
+                    <small style="opacity: 0.8;">Orefish LLC is a Florida limited liability company</small>
+                </p>
             </div>
-            <p class="copyright">© 2025 Orefish LLC. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Email copy functionality
+        function copyEmail() {
+            const email = 'support@orefish.com';
+            const button = document.getElementById('emailButton');
+            const text = document.getElementById('emailText');
+            const icon = document.getElementById('copyIcon');
+            
+            navigator.clipboard.writeText(email).then(() => {
+                button.classList.add('copied');
+                text.textContent = 'Copied!';
+                icon.innerHTML = '<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    text.textContent = email;
+                    icon.innerHTML = '<path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>';
+                }, 2000);
+            }).catch(() => {
+                window.location.href = `mailto:${email}`;
+            });
+        }
+    </script>
 </body>
 </html>
